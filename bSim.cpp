@@ -1,9 +1,10 @@
 #include "engine.h"
 
-double bound = 1000;
+double bound = 3000;
 double originBound = 0;
 double boundDim = originBound + bound;
 double friction = 0.5;
+bool checkWithOther = true;
 
 class Particle {
 public:
@@ -34,13 +35,13 @@ public:
     double acceleration[2] = { 0,0 };
     double force[2] = { 0,0 };
     // variables
-    double radius = 0;
-    double mass = 0;
+    double radius;
+    double mass;
     int id = 0;
-    double accelerationGravity = -0.05;
+    double accelerationGravity = -0.10;
     // public functions..
     void show() {
-        Graphics::circleOutline(currentPos[0], currentPos[1], radius, COLOR_KHAKI);
+        Graphics::circleOutline(currentPos[0], currentPos[1], radius, COLOR_KHAKI,10);
     }
     void update(double deltaTime) {
         // calculate acceleration by dividing the forces acting on the particle by it's mass
@@ -81,23 +82,6 @@ public:
             currentPos[1] = originBound + bound - radius; // Place the particle at the boundary
             oldPos[1] = currentPos[1] + velocity[1] * friction;
         }
-    }
-    double getKE() const {
-        double vMagnitude = std::sqrt(velocity[0] * velocity[0] + velocity[1] * velocity[1]);
-        return 0.5 * mass * vMagnitude * vMagnitude;
-    }
-    double getVMag() {
-        double mag = sqrt(velocity[0] * velocity[0] + velocity[1] * velocity[1]);
-        return mag;
-    }
-    void drawOrientationLine() {
-        // Calculate the endpoint of the orientation line
-        double lineLength = radius / 10; // Adjust the line length as needed
-        double x2 = currentPos[0] + lineLength * cos(orientation);
-        double y2 = currentPos[1] + lineLength * sin(orientation);
-
-        // Draw the line
-        Graphics::drawLine(currentPos[0], currentPos[1], x2, y2, COLOR_KHAKI);
     }
 private:
 };
@@ -350,6 +334,7 @@ void BSIM::display(GLFWwindow& window, Camera2d& cam)
     glClear(GL_COLOR_BUFFER_BIT);
     // draw the boundary of the physics simulation
     Graphics::rectangleOutline(originBound - 10, originBound - 10, bound + 20, bound + 20, COLOR_WHITE);
+  //  grid.draw();
     for (int i = 0; i < balls.size(); i++) {
         balls[i].show();
     }
@@ -357,7 +342,7 @@ void BSIM::display(GLFWwindow& window, Camera2d& cam)
     glfwSwapBuffers(&window);
 }
 void BSIM::update(GLFWwindow& window, float deltaTime, Camera2d& cam) {
-    int numSubsteps = 8; // Adjust the number of substeps as needed
+    int numSubsteps = 1; // Adjust the number of substeps as needed
     // Calculate substep size
     double substepDeltaTime = deltaTime / numSubsteps;
     // Update particle positions and velocities
@@ -366,7 +351,7 @@ void BSIM::update(GLFWwindow& window, float deltaTime, Camera2d& cam) {
             balls[i].update(substepDeltaTime);
             balls[i].boundToSquare(bound);
         }
-        grid.update(balls);
+            grid.update(balls);
     }
      // Apply camera transformation
     cam.apply();
@@ -405,15 +390,17 @@ void createNewBallsInCircle(Camera2d& cam, double xp, double yp, int numBalls) {
         double ballX = worldX + randomRadius * std::cos(randomAngle);
         double ballY = worldY + randomRadius * std::sin(randomAngle);
 
-        // Check for collision with existing balls
-        for (const Particle& existingBall : balls) {
-            double dx = ballX - existingBall.currentPos[0];
-            double dy = ballY - existingBall.currentPos[1];
-            double distance = std::sqrt(dx * dx + dy * dy);
-            double collisionRadius = size + existingBall.radius; // Adjust this as needed
-            if (distance < collisionRadius) {
-                collides = true;
-                break;
+        if (checkWithOther) {
+            // Check for collision with existing balls
+            for (const Particle& existingBall : balls) {
+                double dx = ballX - existingBall.currentPos[0];
+                double dy = ballY - existingBall.currentPos[1];
+                double distance = std::sqrt(dx * dx + dy * dy);
+                double collisionRadius = size + existingBall.radius; // Adjust this as needed
+                if (distance < collisionRadius) {
+                    collides = true;
+                    break;
+                }
             }
         }
 

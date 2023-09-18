@@ -7,8 +7,8 @@ public:
     static void ellipse(float cx, float cy, float cx2, float cy2, float eccentricity, const float* color);
     static void ellipseOutline(float cx, float cy, float cx2, float cy2, float eccentricity, const float* color);
     // CIRCLE
-    static void circle(float centerX, float centerY, float radius, const float* color);
-    static void circleOutline(double centerX, double centerY, double radius, const float* color);
+    static void circle(float centerX, float centerY, float radius, const float* color, int nSeg);
+    static void circleOutline(double centerX, double centerY, double radius, const float* color, int nSeg);
     // TRIANGLE
     static void triangle(float centerX, float centerY, float sideLength, const float* color);
     static void triangleOutline(float centerX, float centerY, float sideLength, const float* color);
