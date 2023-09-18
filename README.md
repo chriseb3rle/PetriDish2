@@ -1,5 +1,5 @@
 # PetriDish2
-CPP Application engine
+CPP nBody particle application
 
 // Extern libs -> glfw3, glm
 
