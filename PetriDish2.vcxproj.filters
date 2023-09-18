@@ -19,24 +19,57 @@
     <Filter Include="Textures">
       <UniqueIdentifier>{87f4e23e-bcad-4114-ab16-0019e0faeab5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{fa765573-4f13-4d57-86f9-7b176819477c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{f3545550-13f4-444d-be3d-db235aa1bfbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera\2D-Camera">
+      <UniqueIdentifier>{cb1a3a6e-d81c-43de-86f6-b47160750c14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulation">
+      <UniqueIdentifier>{ec4f07a3-7043-437e-bb09-ce6fb3ba4d48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulation\BallSim">
+      <UniqueIdentifier>{9eb65930-6768-4559-bff4-e8ab18a1cae5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application.h">
-      <Filter>Window</Filter>
-    </ClInclude>
     <ClInclude Include="engine.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera2D.h">
+      <Filter>Camera\2D-Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="bSim.h">
+      <Filter>Simulation\BallSim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="application.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera2D.cpp">
+      <Filter>Camera\2D-Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="bSim.cpp">
+      <Filter>Simulation\BallSim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

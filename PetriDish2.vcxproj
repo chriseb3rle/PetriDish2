@@ -135,12 +135,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="application.h" />
+    <ClInclude Include="bSim.h" />
+    <ClInclude Include="Camera2D.h" />
+    <ClInclude Include="Colors.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="engine.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="application.cpp" />
+    <ClCompile Include="bSim.cpp" />
+    <ClCompile Include="Camera2D.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,15 +1,6 @@
 #include "engine.h"
-
+#include "main.h"
 int main() {
-    Application app(800,600);
-
-    try {
-        app.run();
-    }
-    catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    return EXIT_SUCCESS;
+	bbsim.game(1690, 1080, game_cam);
+	return 0;
 }
