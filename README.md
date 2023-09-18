@@ -4,4 +4,4 @@ CPP nBody particle application
 // Extern libs -> glfw3, glm
 
 //Current implemntation can handle 20,000 bodies with gravity and collisions in real-time with 1 subdivision
-//Using verlet integration; Grid partitioning for collision detection
+//Using verlet integration for the particle dynamics; Grid partitioning for collision detection
