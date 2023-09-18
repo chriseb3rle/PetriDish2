@@ -1,6 +1,6 @@
 #include "engine.h"
 
-double bound = 3000;
+double bound = 4000;
 double originBound = 0;
 double boundDim = originBound + bound;
 double friction = 0.5;
@@ -41,7 +41,7 @@ public:
     double accelerationGravity = -0.10;
     // public functions..
     void show() {
-        Graphics::circleOutline(currentPos[0], currentPos[1], radius, COLOR_KHAKI,10);
+        Graphics::circleOutline(currentPos[0], currentPos[1], radius, COLOR_KHAKI,12);
     }
     void update(double deltaTime) {
         // calculate acceleration by dividing the forces acting on the particle by it's mass
@@ -356,7 +356,6 @@ void BSIM::update(GLFWwindow& window, float deltaTime, Camera2d& cam) {
      // Apply camera transformation
     cam.apply();
 }
-
 int idn = 1;
 void createNewBallsInCircle(Camera2d& cam, double xp, double yp, int numBalls) {
     // Seed the random number generator
@@ -450,6 +449,8 @@ int BSIM::game(int width, int height, Camera2d& cam)
     int leftMouseButtonState = GLFW_RELEASE;
     //initialize camera starting position
     cam.setCameraPosition((originBound + bound / 2), (originBound + bound / 2));
+    cam.setWindowSize(width, height);
+    glViewport(0, 0, width, height);
     // State variable to track if we are in ball placement mode
     bool mouseButtonDown = false;
     bool codeExecuted = false;
@@ -472,7 +473,6 @@ int BSIM::game(int width, int height, Camera2d& cam)
             glfwGetCursorPos(window, &xpos, &ypos);
             createNewBallsInCircle(cam, xpos, ypos, 500);
         }
-
         // phsyics sim loop
         update(*window, deltaTime, cam);
         display(*window, cam);
