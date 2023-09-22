@@ -342,7 +342,7 @@ void BSIM::display(GLFWwindow& window, Camera2d& cam)
     glfwSwapBuffers(&window);
 }
 void BSIM::update(GLFWwindow& window, float deltaTime, Camera2d& cam) {
-    int numSubsteps = 1; // Adjust the number of substeps as needed
+    int numSubsteps = 2; // Adjust the number of substeps as needed
     // Calculate substep size
     double substepDeltaTime = deltaTime / numSubsteps;
     // Update particle positions and velocities
